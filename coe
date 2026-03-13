@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    __ A, B, C, D, E, F, G, H, I;
+    _____ A >> B;
+    cin >> C _____ E;
+    cin __________ H >> I;
+    cout << A << " " << B << " " << C << " " << D << " " << E << " " << F << " " << G << " " << H << " " << I;
+    return 0;
+}
