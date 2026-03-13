@@ -1,0 +1,13 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int score = 100;
+    double avg = 85.5678;
+
+    cout << score << endl; 
+    // Use fixed and setprecision for decimals
+    cout << fixed << setprecision(2) << avg << endl; // Output: 85.57
+    return 0;
+}
