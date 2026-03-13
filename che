@@ -1,0 +1,13 @@
+include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ___ N;
+    ____ S;
+    cin >> N;
+    cin >> S;
+    cout ___________;
+    return 0;
+}
