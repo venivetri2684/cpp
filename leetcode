@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(std::string s) {
+       
+        std::vector<int> charMap(128, -1);
+        int maxLength = 0;
+        int start = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+           
+            if (charMap[s[i]] >= start) {
+                start = charMap[s[i]] + 1;
+            }
+
+           
+            charMap[s[i]] = i;
+            
+            maxLength = std::max(maxLength, i - start + 1);
+        }
+
+        return maxLength;
+    }
+};
