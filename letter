@@ -1,0 +1,40 @@
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+class Solution {
+public:
+    std::vector<std::string> letterCombinations(std::string digits) {
+        if (digits.empty()) return {};
+
+        // 1. Map digits to their corresponding letters
+        std::unordered_map<char, std::string> phone = {
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        std::vector<std::string> result;
+        std::string current;
+        backtrack(0, digits, phone, current, result);
+        return result;
+    }
+
+private:
+    void backtrack(int index, const std::string& digits, 
+                   std::unordered_map<char, std::string>& phone, 
+                   std::string& current, std::vector<std::string>& result) {
+        // Base case: if the current combination length equals digits length
+        if (index == digits.length()) {
+            result.push_back(current);
+            return;
+        }
+
+        // Get the letters for the current digit
+        std::string letters = phone[digits[index]];
+        for (char letter : letters) {
+            current.push_back(letter);           // Choose
+            backtrack(index + 1, digits, phone, current, result); // Explore
+            current.pop_back();                  // Unchoose (backtrack)
+        }
+    }
+};
