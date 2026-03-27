@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int angle1,angle2,angle3;
+    cin >> angle1 >> angle2 >> angle3;
+    
+    if((angle1+angle2+angle3) == 180){
+        if(angle1==angle2 && angle2==angle3 && angle1==angle3)
+            cout << "Prize 3";
+        else if(angle1==90 || angle2==90 || angle3==90)
+            cout << "Prize 2";
+        else 
+            cout << "Prize 1";
+    }
+   else if((angle1+angle2+angle3) != 180)
+		cout << "Invalid input";
+	else
+	    cout << "No Prize";
+    return 0;
+}
