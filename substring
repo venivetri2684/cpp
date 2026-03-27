@@ -1,0 +1,56 @@
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+class Solution {
+public:
+    std::vector<int> findSubstring(std::string s, std::vector<std::string>& words) {
+        std::vector<int> result;
+        if (s.empty() || words.empty()) return result;
+
+        int wordLen = words[0].length();
+        int wordCount = words.size();
+        int totalLen = wordLen * wordCount;
+        int sLen = s.length();
+
+    
+        std::unordered_map<std::string, int> wordFreq;
+        for (const std::string& w : words) {
+            wordFreq[w]++;
+        }
+        for (int i = 0; i < wordLen; i++) {
+            int left = i;
+            int count = 0;
+            std::unordered_map<std::string, int> windowFreq;
+
+    
+            for (int j = i; j <= sLen - wordLen; j += wordLen) {
+                std::string sub = s.substr(j, wordLen);
+
+                if (wordFreq.count(sub)) {
+                    windowFreq[sub]++;
+                    count++;
+
+                    
+                    while (windowFreq[sub] > wordFreq[sub]) {
+                        std::string leftWord = s.substr(left, wordLen);
+                        windowFreq[leftWord]--;
+                        count--;
+                        left += wordLen;
+                    }
+
+                    
+                    if (count == wordCount) {
+                        result.push_back(left);
+                    }
+                } else {
+                    
+                    windowFreq.clear();
+                    count = 0;
+                    left = j + wordLen;
+                }
+            }
+        }
+        return result;
+    }
+};
